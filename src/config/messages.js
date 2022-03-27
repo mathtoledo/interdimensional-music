@@ -23,6 +23,12 @@ export const playCards = {
 		.addFields(
 			{ name: '⌚ Duração da música', value: duration },
 		)
+	},
+	queue: (queueMsg) => {
+		return new MessageEmbed()
+		.setColor('#f8de1e')
+		.setTitle('👽 Músicas interdimensionais na fila')
+		.setDescription(queueMsg)
 	}
 	
 }
