@@ -3,6 +3,7 @@ import { joinVoiceChannel, createAudioPlayer, createAudioResource, AudioPlayerSt
 import play from 'play-dl'
 
 export const QUEUES_LIST = new Map()
+export const player = createAudioPlayer()
 export let PLAYING = false
 
 export function createQueue(serverId, textChannel, voiceChannel) {
@@ -14,7 +15,7 @@ export function createQueue(serverId, textChannel, voiceChannel) {
             connection: null,
             songs: [],
             volume: 5,
-            playing: true
+            playing: false
         }
         QUEUES_LIST.set(serverId, startQueue)
         console.log('queue criada')
@@ -37,22 +38,24 @@ export async function streamSongFromQueue(serverId, message) {
     })
 
     serverQueue.connection = connection
-
-    const player = createAudioPlayer()
    
-    playNextSong(player, serverId)
+    playNextSong(serverId)
+
+    serverQueue.playing = true
 
     connection.subscribe(player)
 
     player.on(AudioPlayerStatus.Playing, () => {
-        serverQueue.textChannel.send({embeds: [playCards.playing(serverQueue.songs[0]?.title, serverQueue.songs[0]?.duration, serverQueue.songs[0]?.url)] })
-        serverQueue.songs.shift()
-        PLAYING = true
+        if (serverQueue.songs[0] && !PLAYING) {
+            serverQueue.textChannel.send({embeds: [playCards.playing(serverQueue.songs[0]?.title || '---', serverQueue.songs[0]?.duration || '---', serverQueue.songs[0]?.url)] })
+            serverQueue.songs.shift()
+            PLAYING = true
+        }
     })
 
     player.on(AudioPlayerStatus.Idle, async () => {
         PLAYING = false
-        playNextSong(player, serverId)
+        playNextSong(serverId)
     })
 
     player.on('error', error => {
@@ -60,7 +63,7 @@ export async function streamSongFromQueue(serverId, message) {
     })
 }
 
-async function playNextSong(player, serverId) {
+async function playNextSong(serverId) {
     const serverQueue = QUEUES_LIST.get(serverId)
     if (!PLAYING && serverQueue.songs.length) {
         let stream = await play.stream(serverQueue.songs[0].url)

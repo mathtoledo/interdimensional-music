@@ -30,7 +30,7 @@ export default async function play(message) {
         createQueue(message.guild.id, message.channel, message.member.voice.channel)
         addSongToQueue(message.guild.id, searchResult, author, message.channel)
         if (QUEUES_LIST.get(message.guild.id).songs.length === 1 && !PLAYING) {
-            streamSongFromQueue(message.guild.id, message.member.voice.channel, message)
+            streamSongFromQueue(message.guild.id, message)
         }
        
     } catch(err) {

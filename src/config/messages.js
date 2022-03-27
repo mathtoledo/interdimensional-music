@@ -19,7 +19,7 @@ export const playCards = {
 		.setColor('#f8de1e')
 		.setTitle(title)
 		.setURL(url)
-		.setDescription('👽 Vai tocar a seguir')
+		.setDescription('👽 Vai tocar agora')
 		.addFields(
 			{ name: '⌚ Duração da música', value: duration },
 		)
