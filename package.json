@@ -1,0 +1,22 @@
+{
+  "name": "interdimensional-music",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "type": "module",
+  "license": "MIT",
+  "scripts": {
+    "start": "node .",
+    "watch": "nodemon ."
+  },
+  "dependencies": {
+    "@discordjs/voice": "^0.8.0",
+    "discord.js": "^13.6.0",
+    "dotenv": "^16.0.0",
+    "libsodium-wrappers": "^0.7.9",
+    "play-dl": "^1.9.2",
+    "yt-search": "^2.10.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
