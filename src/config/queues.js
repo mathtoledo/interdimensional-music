@@ -36,7 +36,7 @@ export async function streamSongFromQueue(serverId, message) {
         guildId: message.guild.id,
         adapterCreator: message.guild.voiceAdapterCreator
     })
-
+    
     serverQueue.connection = connection
    
     playNextSong(serverId)
@@ -73,3 +73,5 @@ async function playNextSong(serverId) {
         player.play(resource)
     }
 }
+
+export function stopPlaying() { PLAYING = false }

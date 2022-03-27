@@ -29,6 +29,11 @@ export const playCards = {
 		.setColor('#f8de1e')
 		.setTitle('👽 Músicas interdimensionais na fila')
 		.setDescription(queueMsg)
+	},
+	stop: () => {
+		return new MessageEmbed()
+		.setColor('#f8de1e')
+		.setTitle('👋👽')
 	}
 	
 }
