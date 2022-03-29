@@ -34,6 +34,11 @@ export const playCards = {
 		return new MessageEmbed()
 		.setColor('#f8de1e')
 		.setTitle('👋👽')
+	},
+	remove: (songTitle) => {
+		return new MessageEmbed()
+		.setColor('#f8de1e')
+		.setTitle(`❌ ${songTitle} removida da lista`)
 	}
 	
 }
