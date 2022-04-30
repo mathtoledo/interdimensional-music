@@ -5,6 +5,7 @@ import play from 'play-dl'
 export const QUEUES_LIST = new Map()
 export const player = createAudioPlayer()
 export let PLAYING = false
+let timeoutID;
 
 export function createQueue(serverId, textChannel, voiceChannel) {
 
@@ -24,7 +25,12 @@ export function createQueue(serverId, textChannel, voiceChannel) {
 }
 
 export function addSongToQueue(serverId, song, author, textChannel) {
-    QUEUES_LIST.get(serverId).songs.push(song)
+     const serverQueue = QUEUES_LIST.get(serverId)
+    if (timeoutID) {
+        clearTimeout(timeoutID)
+        timeoutID = undefined
+    }
+    serverQueue.songs.push(song)
     return textChannel.send({ embeds: [playCards.success(song?.title, author, song?.duration, song?.thumbnail, song?.url)] })
 }
 
@@ -61,6 +67,7 @@ export async function streamSongFromQueue(serverId, message) {
     player.on('error', error => {
         console.error(`Error: ${error} with resource`)
     })
+    
 }
 
 async function playNextSong(serverId) {
@@ -71,7 +78,17 @@ async function playNextSong(serverId) {
             inputType: stream.type
         })
         player.play(resource)
+    } else {                  
+        autoDisconnect(serverId) 
     }
+}
+
+async function autoDisconnect(serverId) {
+    const serverQueue = QUEUES_LIST.get(serverId)
+    timeoutID = setTimeout(() => {
+        serverQueue.songs = []
+        serverQueue.connection.disconnect()
+    }, 5 * 60 * 1000)
 }
 
 export function stopPlaying() { PLAYING = false }

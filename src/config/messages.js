@@ -39,8 +39,7 @@ export const playCards = {
 		return new MessageEmbed()
 		.setColor('#f8de1e')
 		.setTitle(`❌ ${songTitle} removida da lista`)
-	}
-	
+	},
 }
 
 export const errorCards = {
