@@ -78,17 +78,17 @@ async function playNextSong(serverId) {
             inputType: stream.type
         })
         player.play(resource)
-    } else {                  
+    } /* else {                  
         autoDisconnect(serverId) 
-    }
+    } */
 }
 
-async function autoDisconnect(serverId) {
+/* async function autoDisconnect(serverId) {
     const serverQueue = QUEUES_LIST.get(serverId)
     timeoutID = setTimeout(() => {
         serverQueue.songs = []
         serverQueue.connection.disconnect()
     }, 5 * 60 * 1000)
-}
+} */
 
 export function stopPlaying() { PLAYING = false }
