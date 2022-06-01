@@ -1,7 +1,11 @@
 import { QUEUES_LIST } from '../config/queues.js'
-import { playCards } from "../config/messages.js"
+import { playCards, errorCards } from "../config/messages.js"
 
 export default async function remove(message) { 
+  const voiceChannel = message.member.voice.channel
+  if (!voiceChannel) {
+    return message.channel.send({ embeds: [errorCards.noChannel()] })
+  }
   const content = Number(message.content.split(' ').slice(1).join(' '))
   
   const serverQueue = QUEUES_LIST.get(message.guild.id)

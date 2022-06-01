@@ -86,9 +86,17 @@ async function playNextSong(serverId) {
 async function autoDisconnect(serverId) {
     const serverQueue = QUEUES_LIST.get(serverId)
     timeoutID = setTimeout(() => {
-        serverQueue.songs = []
-        serverQueue.connection.disconnect()
-    }, 5 * 60 * 1000)
+        if (canDisconnect()) {
+            console.log("👋 Desconectando...")
+            serverQueue.songs = []
+            serverQueue.connection.disconnect()
+        }
+    }, 5 * 60 * 1000) // 5 minutes
+}
+
+function canDisconnect(serverId) {
+    const serverQueue = QUEUES_LIST.get(serverId)
+    return !PLAYING && (!serverQueue || !serverQueue.songs.length)
 }
 
 export function stopPlaying() { PLAYING = false }
