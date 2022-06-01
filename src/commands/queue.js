@@ -1,7 +1,7 @@
 import { QUEUES_LIST } from '../config/queues.js'
 import { playCards } from "../config/messages.js"
 
-export default async function skip(message) { 
+export default async function queue(message) { 
   const serverQueue = QUEUES_LIST.get(message.guild.id)
   const queueList = serverQueue.songs.map((song, i) => `[${++i}]  - ${song.title}`)
   let queueMsg

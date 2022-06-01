@@ -40,6 +40,12 @@ export const playCards = {
 		.setColor('#f8de1e')
 		.setTitle(`❌ ${songTitle} removida da lista`)
 	},
+	help: (commandsList) => {
+		return new MessageEmbed()
+		.setColor('#f8de1e')
+		.setTitle(`👨🦅 Estou com muita dor, por favor, me ajude.`)
+		.setDescription(commandsList)
+	},
 }
 
 export const errorCards = {
