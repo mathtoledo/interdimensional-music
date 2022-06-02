@@ -21,6 +21,11 @@ export default async function play(message) {
     }
 
     const searchResult = await youtubeSearch(content)
+  
+    if (searchResult.error) {
+        return message.channel.send({ embeds: [errorCards.error(searchResult.errorMessage)] })
+    }
+
     const author = {
         name: message.author.username,
         icon: `https://cdn.discordapp.com/avatars/${message.author.id}/${message.author.avatar}.png`

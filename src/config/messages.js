@@ -49,6 +49,12 @@ export const playCards = {
 }
 
 export const errorCards = {
+	error : (errorMessage) => {
+		return new MessageEmbed()
+		.setColor('#f8de1e')
+		.setTitle(errorMessage)
+	},
+
 	typo : () => {
 		return new MessageEmbed()
 		.setColor('#f8de1e')
