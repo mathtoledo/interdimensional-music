@@ -6,6 +6,7 @@ import queue from '../commands/queue.js'
 import stop from '../commands/stop.js'
 import remove from '../commands/remove.js'
 import help from '../commands/help.js'
+import version from '../commands/version.js'
 
 const COMMANDS = {
     [`${PREFIX}play`]: (message) => play(message),
@@ -14,6 +15,7 @@ const COMMANDS = {
     [`${PREFIX}queue`]: (message) => queue(message),
     [`${PREFIX}remove`]: (message) => remove(message),
     [`${PREFIX}help`]: (message) => help(message),
+    [`${PREFIX}version`]: (message) => version(message),
 }
 
 export default COMMANDS;

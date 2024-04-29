@@ -19,7 +19,6 @@ export function createQueue(serverId, textChannel, voiceChannel) {
             playing: false
         }
         QUEUES_LIST.set(serverId, startQueue)
-        console.log('queue criada')
     }
 
 }

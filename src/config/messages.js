@@ -1,8 +1,8 @@
-import { MessageEmbed } from "discord.js"
+import { EmbedBuilder } from "discord.js"
 
 export const playCards = {
 	success: (title, author, duration, thumbnail, url) => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
 		.setTitle(title)
 		.setURL(url)
@@ -15,7 +15,7 @@ export const playCards = {
 		.setTimestamp()
 	},
 	playing: (title, duration, url) => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
 		.setTitle(title)
 		.setURL(url)
@@ -25,50 +25,55 @@ export const playCards = {
 		)
 	},
 	queue: (queueMsg) => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
 		.setTitle('👽 Músicas interdimensionais na fila')
 		.setDescription(queueMsg)
 	},
 	stop: () => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
 		.setTitle('👋👽')
 	},
 	remove: (songTitle) => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
 		.setTitle(`❌ ${songTitle} removida da lista`)
 	},
 	help: (commandsList) => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
-		.setTitle(`👨🦅 Estou com muita dor, por favor, me ajude.`)
+		.setTitle(`👨🦅 Estou com muita dor, por favor, me ajude`)
 		.setDescription(commandsList)
+	},
+	version: (version) => {
+		return new EmbedBuilder()
+		.setColor('#f8de1e')
+		.setTitle(`v${version}`)
 	},
 }
 
 export const errorCards = {
 	error : (errorMessage) => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
 		.setTitle(errorMessage)
 	},
 
 	typo : () => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
 		.setTitle('❌ Parece que alguém digitou o comando errado, digite `.help` para mais informações. ❌ ')
 	},
 
 	permission : () => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
 		.setTitle('❌ Parece que eu não tenho permissão para entrar no canal de voz. ❌ ')
 	},
 
 	noChannel : () => {
-		return new MessageEmbed()
+		return new EmbedBuilder()
 		.setColor('#f8de1e')
 		.setTitle('❌ Você precisa estar conectado em um canal de voz. ❌ ')
 	},

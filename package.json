@@ -9,16 +9,16 @@
     "watch": "nodemon ."
   },
   "dependencies": {
-    "@discordjs/voice": "^0.8.0",
-    "discord.js": "^13.6.0",
-    "dotenv": "^16.0.0",
-    "libsodium-wrappers": "^0.7.9",
-    "play-dl": "^1.9.2",
-    "yt-search": "^2.10.3"
+    "@discordjs/voice": "^0.16.1",
+    "discord.js": "^14.14.1",
+    "dotenv": "^16.4.5",
+    "libsodium-wrappers": "^0.7.13",
+    "play-dl": "^1.9.7",
+    "yt-search": "^2.10.4"
   },
   "devDependencies": {
     "@flydotio/dockerfile": "^0.5.6",
-    "nodemon": "^2.0.15"
+    "nodemon": "^3.1.0"
   },
   "engines": {
     "node": "16.13.0"
